@@ -111,6 +111,20 @@ static BOOL _groupModifing = NO;
         [indicatorColor setFill];
         [indicatorPath fill];
         CGContextAddPath(context, indicatorPath.CGPath);
+        
+        
+        // draw icon
+        UIBezierPath* iconPath;
+        CGRect iconRect = CGRectMake((iconSize - indicatorSize) / 2, (iconSize - indicatorSize) / 2 , indicatorSize, indicatorSize);
+        if (self.isIconSquare) {
+            iconPath = [UIBezierPath bezierPathWithRect:iconRect];
+        } else {
+            iconPath = [UIBezierPath bezierPathWithOvalInRect:iconRect];
+        }
+        [iconColor setStroke];
+        iconPath.lineWidth = iconStrokeWidth;
+        [iconPath stroke];
+        CGContextAddPath(context, iconPath.CGPath);
     }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
